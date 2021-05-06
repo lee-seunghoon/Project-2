@@ -36,11 +36,18 @@
 
 
 
+## WBS
+
+![image-20210506180452794](md-images/image-20210506180452794.png)
+
+
+
 ## 배운점
 
 > - 이미지 phash data/ 텍스트 data/ 이미지 data EDA 방법
 > - 저연어 처리를 위한 Token, Word Embedding, TFIDF, BERT 개념
-> - 이미지 분류를 위한 EfficientNetB4 & ArcFace 모델 
+> - 이미지 분류를 위한 EfficientNetB4 & ArcFace 모델
+> - 전체 모델 파이프라인 빌드
 
 
 
