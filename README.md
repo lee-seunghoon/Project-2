@@ -582,3 +582,46 @@ def get_neighbors(df, embeddings, KNN=50, image=True):
     return df, predictions
 ```
 
+
+
+## F1 Score
+
+```python
+def f1_score(t_true, t_pred):
+    t_true = t_true.apply(lambda x : set(x.split()))
+    t_pred = t_pred.apply(lambda x : set(x.split()))
+    
+    intersection = np.array([len(x[0] & x[1]) for x in zip(t_true, t_pred)])
+    len_t_true = t_true.apply(lambda x : len(x)).values
+    len_t_pred = t_pred.apply(lambda x : len(x)).values
+    
+    F1 = 2 * intersection / (len_t_true + len_t_pred)
+    
+    return F1
+```
+
+
+
+## 예측값 결합
+
+```python
+def combine_preds(row):
+    x = np.concatenate([row['image_pred'], row['text_pred'], row['phash_pred']])
+    return ' '.join(np.unique(x))
+
+if GET_CV:
+    df['image_pred'] = image_predictions
+    df['text_pred'] = text_predictions
+    df['pred_matches'] = df.apply(combine_preds, axis = 1)
+    df['f1'] = f1_score(df['matches'], df['pred_matches'])
+    score = df.f1.mean()
+    print('Final F1 CV Score :', score)
+    df['matches'] = df['pred_matches']
+    df[['posting_id', 'matches']].to_csv('submission.csv', index = False)
+else:
+    df['image_pred'] = image_predictions
+    df['text_pred'] = text_predictions
+    df['matches'] = df.apply(combine_preds, axis = 1)
+    df[['posting_id', 'matches']].to_csv('submission.csv', index = False)
+```
+
