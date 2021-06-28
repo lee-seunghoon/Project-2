@@ -206,6 +206,86 @@ for i in range(2):
 
 ![image-20210609093643980](md-images/image-20210609093643980.png)
 
+## 코드리뷰
+
+
+
+> - 라이브러리
+
+```python
+# 파일 처리
+import os
+
+# Data 처리
+import pandas as pd
+import numpy as np
+
+##############################################################
+
+# RAPIDS 라이브러리
+import cudf, cuml, cupy 
+from cuml.feature_extraction.text import TfidfVectorizer
+from cuml.neighbors import NearestNeighbors
+##############################################################
+
+# ML, DNN, CNN 관련 라이브러리
+import tensorflow as tf
+from tensorflow.keras.models import Model
+from tensorflow.keras.layers import Layer, Input, GlobalAveragePooling2D, Softmax
+
+#!pip install efficientnet
+import efficientnet.tfkeras as efn
+import math
+##############################################################
+
+# 이미지 및 그래프 출력
+import cv2
+import matplotlib.pyplot as plt
+import seaborn as sns
+import plotly.express as px
+
+##############################################################
+
+# 해쉬(phash) 값 처리
+import imagehash
+
+##############################################################
+
+# Text Data NLP 처리
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.neighbors import NearestNeighbors
+import re
+import nltk
+nltk.download('popular')
+nltk.download('stopwords')
+
+from shutil import copyfile
+copyfile(src = "../input/bert-baseline/tokenization.py", dst = "../working/tokenization.py")
+
+import tokenization
+import tensorflow_hub as hub
+
+from sklearn.preprocessing import LabelEncoder
+##############################################################
+
+# 메모리 관리
+import gc
+
+# 경고메시지 지우기
+import warnings
+warnings.filterwarnings(action='ignore')
+
+# 상태바 진행상태
+from tqdm import tqdm
+
+# Text Color
+from termcolor import colored
+
+# 실행시간 확인
+import time
+import datetime
+```
+
 
 
 
